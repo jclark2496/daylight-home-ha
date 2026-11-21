@@ -1,0 +1,40 @@
+# Daylight - light theme for the Daylight Home dashboard.
+# Install: put this file in /config/themes/ and make sure configuration.yaml has
+#   frontend:
+#     themes: !include_dir_merge_named themes
+# then restart Home Assistant (or run the frontend.reload_themes action).
+# Light only on purpose: dark text always sits on white or light-gray cards.
+daylight:
+  # Page and cards
+  primary-background-color: "#F6F8FB"
+  secondary-background-color: "#EEF2F7"
+  lovelace-background: "#F6F8FB"
+  card-background-color: "#FFFFFF"
+  ha-card-background: "#FFFFFF"
+  ha-card-border-radius: "22px"
+  ha-card-border-width: "0px"
+  ha-card-box-shadow: "0 6px 18px rgba(23,32,51,.06)"
+  divider-color: "rgba(23,32,51,.08)"
+
+  # Text (WCAG contrast on #FFFFFF: primary 16.3:1, secondary 5.4:1; on #F6F8FB: 15.3:1 / 5.1:1)
+  primary-text-color: "#172033"
+  secondary-text-color: "#5F6B7A"
+  text-primary-color: "#FFFFFF"
+  disabled-text-color: "#8A94A3"
+  rgb-primary-text-color: "23, 32, 51"
+  rgb-secondary-text-color: "95, 107, 122"
+
+  # Accent: blue (the dashboard switches some accents to rose per user)
+  primary-color: "#2F67E8"
+  accent-color: "#2F67E8"
+  state-icon-color: "#2F67E8"
+  state-icon-active-color: "#2F67E8"
+
+  # Header (hidden by Kiosk Mode, but used when you open ?disable_km)
+  app-header-background-color: "#F6F8FB"
+  app-header-text-color: "#172033"
+
+  # Mushroom
+  mush-card-primary-font-weight: "680"
+  mush-card-secondary-font-weight: "540"
+  mush-rgb-state-light: "47, 103, 232"
