@@ -1,16 +1,15 @@
-# Daylight Home
+<h1 id="daylight-home">
+  <picture>
+    <source media="(max-width: 650px)" srcset="docs/readme/cover-mobile.png">
+    <img src="docs/readme/cover.png" alt="Daylight Home — blue and rose Home Assistant dashboards with shortcuts for lights, security, climate, and music">
+  </picture>
+</h1>
 
 <a id="why-daylight-home"></a>
 
-See which rooms still have lights on before bed, dim one lamp, or tap Sleep to run your evening scene. Daylight Home brings lights, locks, the thermostat, and speakers into one light-themed Home Assistant dashboard for the Companion app or a portrait kiosk tablet.
+Before bed, open **Lights** to see which rooms still have lights on. Dim one lamp or run your Sleep scene. Daylight Home is a Home Assistant template for the Companion app or a portrait kiosk tablet. You bring the devices and scenes.
 
-[Set up Daylight Home](#quickstart) · [Browse the screens](#a-look-around)
-
-[![MIT License](https://img.shields.io/badge/license-MIT-315ED2)](LICENSE)
-[![Tested on Home Assistant 2026.11.2](https://img.shields.io/badge/Home_Assistant-tested_on_2026.11.2-315ED2)](#requirements)
-[![HACS frontend extensions required](https://img.shields.io/badge/HACS-5_frontend_extensions-B21B65)](#requirements)
-
-<a href="docs/home-blue.png"><img src="docs/home-blue.png" width="225" alt="Blue home screen with a morning greeting, voice bar, and tiles for Lights, Security, Climate, and Music"></a>
+**[Set up the dashboard](#quickstart)** · [Walk through a room](#a-look-around) · [Make it yours](#make-it-yours)
 
 ## What it can do
 
@@ -20,7 +19,31 @@ See which rooms still have lights on before bed, dim one lamp, or tap Sleep to r
 - **Climate and music.** Set a target temperature or choose a supported HVAC mode. Both speaker cards show what’s playing. Skip tracks, control playback, set the volume, or mute a speaker.
 - **Mobile navigation.** Kiosk Mode hides standard navigation on mobile. The home-screen gear gives you access to the standard interface.
 
+## A look around
+
+**Lights → Living Room** follows one light from the room count to the dimmer. These screens use demo devices on a test instance.
+
+| Find the room | Adjust the light |
+| --- | --- |
+| <a href="docs/lights.png"><img src="docs/lights.png" width="180" alt="Lights view. Living Room has one of its two lights on."></a> | <a href="docs/living-room.png"><img src="docs/living-room.png" width="180" alt="Living Room view. Main is at 78 percent and Lamp is off."></a> |
+| **Living Room** reads “1 of 2 on.” Tap the room tile. | **Main** is on at 78%. Drag its slider to dim it, or tap **All off** to switch off both lights. |
+
+<details>
+<summary>See the home screens, security, climate, and music</summary>
+
+The sample home screens use a fictional user. Open a screenshot at full size.
+
+- **Home** — [Blue greeting](docs/home-blue.png) · [Rose greeting](docs/home-rose.png)
+- **Security** — [Alarm controls and two door locks](docs/security.png)
+- **Climate** — [Thermostat and HVAC modes](docs/climate.png)
+- **Music** — [Playback and volume for both speakers](docs/music.png)
+
+</details>
+
 ## Requirements
+
+[![Tested on Home Assistant 2026.11.2](https://img.shields.io/badge/Home_Assistant-tested_on_2026.11.2-315ED2)](#requirements)
+[![HACS frontend extensions required](https://img.shields.io/badge/HACS-5_frontend_extensions-B21B65)](#requirements)
 
 You’ll need Home Assistant, [HACS](https://hacs.xyz/), and the five frontend extensions below. The template was tested on Home Assistant **2026.11.2** with demo entities on a test instance. Physical-phone and other-version testing is still pending.
 
@@ -41,18 +64,6 @@ You’ll need Home Assistant, [HACS](https://hacs.xyz/), and the five frontend e
 5. **Open the dashboard’s Raw configuration editor**, paste your edited YAML, and save. Open `/daylight-home/home`. You should see your name above the four shortcuts. Tap **Lights → Living Room** and check that the two light cards show your devices before trying a control.
 
 The [full setup guide](SETUP.md) includes the tested card versions and installation details.
-
-## A look around
-
-The screenshots use demo devices and a fictional user on a test instance. Select any image to see it at full size.
-
-| Home in rose | Lights | Living Room |
-| --- | --- | --- |
-| [![Rose greeting and matching shortcuts](docs/home-rose.png)](docs/home-rose.png) | [![Scene chips and room light counts](docs/lights.png)](docs/lights.png) | [![Living Room light controls and brightness sliders](docs/living-room.png)](docs/living-room.png) |
-
-| Security | Climate | Music |
-| --- | --- | --- |
-| [![Alarm controls and two door locks](docs/security.png)](docs/security.png) | [![Thermostat and HVAC modes](docs/climate.png)](docs/climate.png) | [![Two speaker cards with playback controls](docs/music.png)](docs/music.png) |
 
 ## One design decision
 
@@ -75,6 +86,8 @@ The four home shortcuts and the room tiles share the `dh_tile` template. It fixe
 **What does the voice bar need?** It opens Home Assistant Assist. Set up a working Assist pipeline on your instance and allow microphone access in the app or browser for spoken requests.
 
 ## Credits and license
+
+[![MIT License](https://img.shields.io/badge/license-MIT-315ED2)](LICENSE)
 
 Daylight Home is free to use and adapt under the [MIT License](LICENSE). Thanks to the maintainers of button-card, Mushroom, card-mod, layout-card, and Kiosk Mode. Those extensions are distributed separately under their own licenses.
 
