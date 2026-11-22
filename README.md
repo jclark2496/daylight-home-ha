@@ -1,6 +1,10 @@
 # Daylight Home
 
-A clean, light Home Assistant dashboard that feels like a native phone app.
+<a id="why-daylight-home"></a>
+
+See which rooms still have lights on before bed, dim one lamp, or tap Sleep to run your evening scene. Daylight Home brings lights, locks, the thermostat, and speakers into one light-themed Home Assistant dashboard for the Companion app or a portrait kiosk tablet.
+
+[Set up Daylight Home](#quickstart) · [Browse the screens](#a-look-around)
 
 [![MIT License](https://img.shields.io/badge/license-MIT-315ED2)](LICENSE)
 [![Tested on Home Assistant 2026.11.2](https://img.shields.io/badge/Home_Assistant-tested_on_2026.11.2-315ED2)](#requirements)
@@ -8,27 +12,13 @@ A clean, light Home Assistant dashboard that feels like a native phone app.
 
 <a href="docs/home-blue.png"><img src="docs/home-blue.png" width="225" alt="Blue home screen with a morning greeting, voice bar, and tiles for Lights, Security, Climate, and Music"></a>
 
-## Why Daylight Home?
+## What it can do
 
-When you’re heading to bed, open Lights to see which rooms still have lights on. Tap a room to dim one lamp or turn everything in that room off, or choose the Sleep scene from the Lights view. Daylight Home puts those everyday controls within a thumb’s reach in the Companion app or on a portrait kiosk tablet. You bring the devices and scenes. The layout, cards, and light theme come with the template.
-
-## A look around
-
-The screenshots use demo devices and a fictional user on a test instance. Select any image to see it at full size.
-
-| Home in rose | Lights | Living Room |
-| --- | --- | --- |
-| [![Rose greeting and matching shortcuts](docs/home-rose.png)](docs/home-rose.png) | [![Scene chips and room light counts](docs/lights.png)](docs/lights.png) | [![Living Room light controls and brightness sliders](docs/living-room.png)](docs/living-room.png) |
-
-| Security | Climate | Music |
-| --- | --- | --- |
-| [![Alarm controls and two door locks](docs/security.png)](docs/security.png) | [![Thermostat and HVAC modes](docs/climate.png)](docs/climate.png) | [![Two speaker cards with playback controls](docs/music.png)](docs/music.png) |
-
-- **Home.** A time-of-day greeting, the date, and your initials sit above the Assist voice bar. Four fixed-size tiles open Lights, Security, Climate, and Music. The accent is blue by default, with rose available per user.
-- **Lights.** Pick Chill, Sleep, or Party, or see how many lights are on in the Living Room, Kitchen, Bedroom, and Outside. Each room has All on and All off controls plus individual Mushroom brightness sliders.
-- **Security.** Check the alarm state, arm home or away, disarm, and see whether each door is locked. **Once you connect real entities, the alarm buttons send real commands. Tapping a door tile toggles that lock.** Hold a tile to open its details.
-- **Climate and music.** Set the temperature and choose an HVAC mode on the built-in thermostat card. Two Mushroom media player cards handle speaker volume and playback.
-- **Theme and navigation.** Kiosk Mode hides the standard navigation on mobile. The light theme uses white tiles against a soft gray background. The [contrast check](tools/contrast.py) tests normal text, large text, and icons against their respective WCAG thresholds.
+- **Home and voice.** See a time-of-day greeting with your first name, initials, and the date. Open Home Assistant Assist from the voice bar, or tap a tile for Lights, Security, Climate, or Music. Each user sees a blue or rose accent.
+- **Lights and scenes.** See how many lights are on in the Living Room, Kitchen, Bedroom, and Outside. Open a room to dim one lamp or turn all its lights on or off. The Lights view also runs your Chill, Sleep, and Party scenes.
+- **Security.** Check the alarm and both door locks. **Arm home, Arm away, and Disarm send real commands once you connect your alarm. Tapping a door tile toggles that lock.** Hold a door tile to open its details.
+- **Climate and music.** Set a target temperature or choose a supported HVAC mode. Both speaker cards show what’s playing. Skip tracks, control playback, set the volume, or mute a speaker.
+- **Mobile navigation.** Kiosk Mode hides standard navigation on mobile. The home-screen gear gives you access to the standard interface.
 
 ## Requirements
 
@@ -45,18 +35,34 @@ You’ll need Home Assistant, [HACS](https://hacs.xyz/), and the five frontend e
 ## Quickstart
 
 1. **Install the five HACS extensions** and refresh your browser or Companion app.
-2. **Load the theme.** Copy [daylight.yaml](themes/daylight.yaml) into `/config/themes/`. Enable that directory in your Home Assistant frontend configuration, then restart Home Assistant or run `frontend.reload_themes`. The [theme setup](SETUP.md#2-theme) includes the YAML.
+2. **Load the theme.** Copy [daylight.yaml](themes/daylight.yaml) into `/config/themes/`. Restart Home Assistant after first enabling that directory in your frontend configuration. If themes are already enabled, run `frontend.reload_themes`. The [theme setup](SETUP.md#2-theme) includes the YAML.
 3. **Create a dashboard** in **Settings → Dashboards** with the URL `daylight-home`. If you choose a different URL, replace the `/daylight-home/` paths in the dashboard YAML.
 4. **Connect your entities.** In a copy of [dashboard.yaml](dashboard.yaml), replace the 17 placeholder IDs for lights, scenes, alarm, locks, thermostat, and speakers. The [placeholder table](SETUP.md#4-replace-the-placeholders) lists each one.
-5. **Open the dashboard’s Raw configuration editor**, paste your edited YAML, and save. Open `/daylight-home/home`, tap **Lights**, and check a room’s entities before trying its controls.
+5. **Open the dashboard’s Raw configuration editor**, paste your edited YAML, and save. Open `/daylight-home/home`. You should see your name above the four shortcuts. Tap **Lights → Living Room** and check that the two light cards show your devices before trying a control.
 
 The [full setup guide](SETUP.md) includes the tested card versions and installation details.
 
+## A look around
+
+The screenshots use demo devices and a fictional user on a test instance. Select any image to see it at full size.
+
+| Home in rose | Lights | Living Room |
+| --- | --- | --- |
+| [![Rose greeting and matching shortcuts](docs/home-rose.png)](docs/home-rose.png) | [![Scene chips and room light counts](docs/lights.png)](docs/lights.png) | [![Living Room light controls and brightness sliders](docs/living-room.png)](docs/living-room.png) |
+
+| Security | Climate | Music |
+| --- | --- | --- |
+| [![Alarm controls and two door locks](docs/security.png)](docs/security.png) | [![Thermostat and HVAC modes](docs/climate.png)](docs/climate.png) | [![Two speaker cards with playback controls](docs/music.png)](docs/music.png) |
+
+## One design decision
+
+The four home shortcuts and the room tiles share the `dh_tile` template. It fixes each tile at 104 pixels tall and shortens long labels with an ellipsis. When a room changes from “All off” to “1 of 2 on,” the next row stays in place. [Tile template](dashboard.yaml)
+
 ## Make it yours
 
-- **Rooms and devices.** When you add or rename a light, update the room’s `lights` list **and** its subview cards. The list calculates the count on the Lights screen. Check the targets of the room’s All on and All off actions as well.
+- **Rooms and devices.** When you add or rename a light, update the room’s `lights` list **and** its subview cards. The list calculates the count on the Lights screen. Also update the room header’s light count and the targets of its All on and All off actions.
 - **Blue or rose.** In `dashboard.yaml`, find `button_card_templates → dh_base → variables → rose_users`. Replace the example value with the Home Assistant display names that should use rose, separated by a vertical bar (`|`). Everyone else gets blue.
-- **Colors.** Edit [the Daylight theme](themes/daylight.yaml) for the page and standard card colors. The greeting gradients and per-user accents are in [the dashboard YAML](dashboard.yaml). After changing the theme, reload themes. If you change the palette, update the color pairs in [the contrast script](tools/contrast.py) and run `python3 tools/contrast.py`.
+- **Colors.** Edit [the Daylight theme](themes/daylight.yaml) for the page and standard card colors. The greeting gradients and per-user accents are in [the dashboard YAML](dashboard.yaml). After changing the theme, reload themes. If you change the palette, update the color pairs in [the contrast script](tools/contrast.py) and run `python3 tools/contrast.py` to check normal text, large text, and icons against their respective WCAG thresholds.
 
 ## FAQ
 
@@ -73,3 +79,5 @@ The [full setup guide](SETUP.md) includes the tested card versions and installat
 Daylight Home is free to use and adapt under the [MIT License](LICENSE). Thanks to the maintainers of button-card, Mushroom, card-mod, layout-card, and Kiosk Mode. Those extensions are distributed separately under their own licenses.
 
 Daylight Home is an independent community project with no affiliation with Home Assistant, the Open Home Foundation, or the extension authors.
+
+[Daylight Home build notes on Forkthis](https://forkthis.ai/daylight-home/)
